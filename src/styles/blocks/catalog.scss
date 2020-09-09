@@ -4,11 +4,13 @@
 .catalog {
   @include spaceBetween;
 
-  flex-wrap: wrap;
-  column-gap: $gap;
-  max-width: $cardsCount * $cardWidth + ($cardsCount - 1) * $gap;
+  display: grid;
+  gap: $rowGap $columnGap;
+  grid-template-columns: repeat($cardsCount, $cardWidth);
+  justify-content: center;
+  padding: 0 20px;
 
-  &__card {
-    margin-bottom: 50px;
+  @media (max-width: $cardsCount * ($cardWidth + $columnGap)) {
+    grid-template-columns: repeat(auto-fill, $cardWidth);
   }
 }
